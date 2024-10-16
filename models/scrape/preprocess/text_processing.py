@@ -1,21 +1,23 @@
+import os
 import chromadb
 
 def process_text(text):
-    
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    db_path = os.path.join(current_dir, '../database/')
+
     #dividing into chunks
     chunk_size = 30
     words = text.split()  
     chunks =[words[i:i + chunk_size] for i in range(0, len(words), chunk_size)]
     print(chunks[0])
+
     # Initialize ChromaDB client
     client = chromadb.Client()
-
     # db to store
-    client = chromadb.PersistentClient(path="./database/")
-
+    client = chromadb.PersistentClient(path=db_path)
     # Create or load a collection in ChromaDB
     collection_name = "text_data"
-    collection = client.create_collection(collection_name)
+    collection = client.get_or_create_collection(collection_name)
 
     # Example text data to store 
 

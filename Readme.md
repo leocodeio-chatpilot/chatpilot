@@ -29,8 +29,16 @@ create empty folder .venv in the root folder ( chatpilot )
 poetry install
 poetry shell
 cd models/scrape
-python selenium_scrapper.py
-python query.py
+python selenium_scrapper.py [ uncomment the code to run individually]
+python query.py [ uncomment the code to run individually]
+```
+
+## use fastAPI
+
+in root folder which is chatpilot/
+
+```
+uvicorn models.api.fast_api:app
 ```
 
 ## contents
