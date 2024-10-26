@@ -8,6 +8,17 @@ from scrape.selenium_scrapper import selenium_scrape_and_save_to_csv
 # Initialize FastAPI app
 app = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
+
+# Allow requests from frontend server (e.g., Vite on port 5173)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"], 
+    allow_credentials=True,
+    allow_methods=["*"], 
+    allow_headers=["*"],
+)
+
 
 # Input model for scraping request
 class ScrapeRequest(BaseModel):
@@ -44,6 +55,7 @@ def scrape_and_store(scrape_request: ScrapeRequest):
 
 @app.post("/query/")
 def query_content(query_request: QueryRequest):
+    print(query_request)
     results = query_db(query_request.query_text, query_request.website_name)
     return {"results": results}
 

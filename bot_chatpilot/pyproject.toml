@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "chatpilot"
+name = "bot_chatpilot"
 version = "0.1.0"
 description = ""
 authors = ["leocodeio <basicleo@787>"]
