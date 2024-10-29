@@ -1,3 +1,6 @@
 {
-  "python.analysis.extraPaths": ["./models/scrape"]
+  "python.analysis.extraPaths": [
+    "./models/scrape",
+    "./models"
+  ]
 }
