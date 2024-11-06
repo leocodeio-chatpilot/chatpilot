@@ -71,7 +71,7 @@
       "containerId": "hbDWx7PHHA4U26qarKVnC",
       "originalText": "chat gpt",
       "lineHeight": 1.25,
-      "baseline": 20
+      "baseline": 21
     },
     {
       "type": "rectangle",
@@ -104,8 +104,8 @@
     },
     {
       "type": "text",
-      "version": 113,
-      "versionNonce": 1062836876,
+      "version": 114,
+      "versionNonce": 352215038,
       "isDeleted": false,
       "id": "U4JYY9tlAtXEDHHxmsK8k",
       "fillStyle": "solid",
@@ -125,7 +125,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124501,
+      "updated": 1730265352346,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -136,12 +136,12 @@
       "containerId": null,
       "originalText": "input ",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "text",
-      "version": 156,
-      "versionNonce": 814490676,
+      "version": 157,
+      "versionNonce": 144058082,
       "isDeleted": false,
       "id": "qIPWp8bM2DVWk3bT7Tpd4",
       "fillStyle": "solid",
@@ -161,7 +161,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124501,
+      "updated": 1730265352347,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -172,7 +172,7 @@
       "containerId": null,
       "originalText": "submit",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "rectangle",
@@ -290,7 +290,7 @@
       "containerId": "LqKLudEmtN2IGTWkqwmhk",
       "originalText": "input",
       "lineHeight": 1.25,
-      "baseline": 20
+      "baseline": 21
     },
     {
       "type": "rectangle",
@@ -328,8 +328,8 @@
     },
     {
       "type": "text",
-      "version": 149,
-      "versionNonce": 148793612,
+      "version": 150,
+      "versionNonce": 275623998,
       "isDeleted": false,
       "id": "LHyUxTWTDLWv7DfLkveLo",
       "fillStyle": "solid",
@@ -349,7 +349,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124502,
+      "updated": 1730265352351,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -360,7 +360,7 @@
       "containerId": null,
       "originalText": "user x\nhistory []\ncur _ query == \" \"",
       "lineHeight": 1.25,
-      "baseline": 67
+      "baseline": 68
     },
     {
       "type": "arrow",
@@ -453,7 +453,7 @@
       "containerId": "G3wvCiE75j9WbgiI7DOzI",
       "originalText": "otuput",
       "lineHeight": 1.25,
-      "baseline": 20
+      "baseline": 21
     },
     {
       "type": "rectangle",
@@ -486,8 +486,8 @@
     },
     {
       "type": "text",
-      "version": 46,
-      "versionNonce": 1231125940,
+      "version": 47,
+      "versionNonce": 984808098,
       "isDeleted": false,
       "id": "aYB8JrTOpHojo6dV31wau",
       "fillStyle": "solid",
@@ -507,7 +507,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124502,
+      "updated": 1730265352352,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -518,7 +518,7 @@
       "containerId": null,
       "originalText": "explaination for ednpoint",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "rectangle",
@@ -551,8 +551,8 @@
     },
     {
       "type": "text",
-      "version": 14,
-      "versionNonce": 365258636,
+      "version": 15,
+      "versionNonce": 973666430,
       "isDeleted": false,
       "id": "2tVXLubEjZPawQoEjVNRo",
       "fillStyle": "solid",
@@ -572,7 +572,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124503,
+      "updated": 1730265352353,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -583,7 +583,7 @@
       "containerId": null,
       "originalText": "virtual env",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "rectangle",
@@ -660,8 +660,8 @@
     },
     {
       "type": "text",
-      "version": 12,
-      "versionNonce": 558868276,
+      "version": 13,
+      "versionNonce": 25122402,
       "isDeleted": false,
       "id": "VK2-kz_V1bY-FYm4qcbbA",
       "fillStyle": "solid",
@@ -681,7 +681,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124503,
+      "updated": 1730265352353,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -692,12 +692,12 @@
       "containerId": null,
       "originalText": "random.py",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "text",
-      "version": 30,
-      "versionNonce": 440964620,
+      "version": 31,
+      "versionNonce": 1502689470,
       "isDeleted": false,
       "id": "MTDoa22OkzCcPAEUUT5Yk",
       "fillStyle": "solid",
@@ -717,7 +717,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124503,
+      "updated": 1730265352354,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -728,7 +728,7 @@
       "containerId": null,
       "originalText": "python random.py",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "rectangle",
@@ -790,8 +790,8 @@
     },
     {
       "type": "text",
-      "version": 21,
-      "versionNonce": 2092736692,
+      "version": 22,
+      "versionNonce": 768227874,
       "isDeleted": false,
       "id": "OUj8yfiaLCbRR5nKuMmiJ",
       "fillStyle": "solid",
@@ -811,7 +811,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124503,
+      "updated": 1730265352355,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -822,12 +822,12 @@
       "containerId": null,
       "originalText": "py -- nmpy ver 3",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "text",
-      "version": 61,
-      "versionNonce": 862057612,
+      "version": 62,
+      "versionNonce": 380072190,
       "isDeleted": false,
       "id": "w0yBFDQRp5z6fUhEmfDDC",
       "fillStyle": "solid",
@@ -847,7 +847,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124504,
+      "updated": 1730265352357,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -858,7 +858,7 @@
       "containerId": null,
       "originalText": "py -- numpy ver 4",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "rectangle",
@@ -891,8 +891,8 @@
     },
     {
       "type": "text",
-      "version": 39,
-      "versionNonce": 592341556,
+      "version": 40,
+      "versionNonce": 511878626,
       "isDeleted": false,
       "id": "hYddstgmiHWgeoHTFBSRg",
       "fillStyle": "solid",
@@ -912,7 +912,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124504,
+      "updated": 1730265352359,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -923,7 +923,7 @@
       "containerId": null,
       "originalText": "LAPTOP",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "rectangle",
@@ -956,8 +956,8 @@
     },
     {
       "type": "text",
-      "version": 94,
-      "versionNonce": 1321960204,
+      "version": 95,
+      "versionNonce": 2093785406,
       "isDeleted": false,
       "id": "UDfdHgiaKxEomLKCRP7am",
       "fillStyle": "solid",
@@ -977,7 +977,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124504,
+      "updated": 1730265352360,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -988,12 +988,12 @@
       "containerId": null,
       "originalText": "python -m venv <name of venv>",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "text",
-      "version": 288,
-      "versionNonce": 2011890612,
+      "version": 289,
+      "versionNonce": 2092407202,
       "isDeleted": false,
       "id": "kZUAQbuYlTyOtVSFqLLMl",
       "fillStyle": "solid",
@@ -1013,7 +1013,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124504,
+      "updated": 1730265352361,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -1024,12 +1024,12 @@
       "containerId": null,
       "originalText": "requirements.txt",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "text",
-      "version": 116,
-      "versionNonce": 318718348,
+      "version": 117,
+      "versionNonce": 2137115006,
       "isDeleted": false,
       "id": "cgSN0KQuKCPVXPKcKTpih",
       "fillStyle": "solid",
@@ -1049,7 +1049,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124504,
+      "updated": 1730265352361,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -1060,7 +1060,7 @@
       "containerId": null,
       "originalText": "pip install -r requiremets.txt",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "rectangle",
@@ -1093,8 +1093,8 @@
     },
     {
       "type": "text",
-      "version": 30,
-      "versionNonce": 280522036,
+      "version": 31,
+      "versionNonce": 2006455650,
       "isDeleted": false,
       "id": "teLg-6_F1JU4btLp-Jh1R",
       "fillStyle": "solid",
@@ -1114,7 +1114,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124505,
+      "updated": 1730265352361,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -1125,7 +1125,7 @@
       "containerId": null,
       "originalText": "poetry",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "rectangle",
@@ -1195,7 +1195,7 @@
       "containerId": "hy9kcdwo2a2UICZYSSLye",
       "originalText": "virtual env",
       "lineHeight": 1.25,
-      "baseline": 20
+      "baseline": 21
     },
     {
       "type": "rectangle",
@@ -1265,7 +1265,7 @@
       "containerId": "swmKDD66mDeCQlnpQ-7VN",
       "originalText": "dependencies of dependecies",
       "lineHeight": 1.25,
-      "baseline": 45
+      "baseline": 46
     },
     {
       "type": "rectangle",
@@ -1335,7 +1335,7 @@
       "containerId": "-456Y6UzCpFRB1qPefb5b",
       "originalText": "package management",
       "lineHeight": 1.25,
-      "baseline": 20
+      "baseline": 21
     },
     {
       "type": "rectangle",
@@ -1368,8 +1368,8 @@
     },
     {
       "type": "text",
-      "version": 10,
-      "versionNonce": 1194799116,
+      "version": 11,
+      "versionNonce": 2108156350,
       "isDeleted": false,
       "id": "jg23b1YvWEmk4XaQU9K_l",
       "fillStyle": "solid",
@@ -1389,7 +1389,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1726673124505,
+      "updated": 1730265352362,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -1400,7 +1400,7 @@
       "containerId": null,
       "originalText": "chromadb",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "rectangle",
@@ -1470,7 +1470,7 @@
       "containerId": "ef0SgcGNYnBXiYp58sY9l",
       "originalText": "csv files ",
       "lineHeight": 1.25,
-      "baseline": 20
+      "baseline": 21
     },
     {
       "type": "arrow",
@@ -1588,7 +1588,7 @@
       "containerId": "07bHF7bWX3Y3P8kNap-WO",
       "originalText": "use pd -- and strone in string",
       "lineHeight": 1.25,
-      "baseline": 45
+      "baseline": 46
     },
     {
       "type": "arrow",
@@ -1714,7 +1714,7 @@
       "containerId": "_YSVux1E7KW7ZF9NyuSrR",
       "originalText": "use chromadb",
       "lineHeight": 1.25,
-      "baseline": 20
+      "baseline": 21
     }
   ],
   "appState": {
