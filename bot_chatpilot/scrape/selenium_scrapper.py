@@ -3,7 +3,7 @@ import os
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from scrape.preprocess.text_processing import process_text
-
+from scrape.preprocess.route_processing import scrape_text_from_routes
 
 def selenium_scrape_and_save_to_csv(url, website_name):
     """Scrapes a website using Selenium and extracts its content.
@@ -76,7 +76,16 @@ def selenium_scrape_and_save_to_csv(url, website_name):
         return None
 
 
-# url = "https://www.apple.com/"
+website_name="Amazon"
+url = "https://www.amazon.in/"
+output_folder = f"./outputs/{website_name}"
+routes_csv_path=os.path.join(output_folder, "selenium_output[routes].csv")
+#routes_csv_path="selenium_output[routes].csv"
+output_file_path=os.path.join(output_folder,"selenium_output.txt")
+
+scrape_text_from_routes(url,routes_csv_path,output_file_path)
+
+
 # url = "https://www.youtube.com/results?search_query=ai"
 # content = selenium_scrape_and_save_to_csv(url)
 # print(content)
