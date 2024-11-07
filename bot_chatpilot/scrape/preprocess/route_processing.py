@@ -34,7 +34,7 @@ def scrape_text_from_routes(base_url,routes_csv_path,output_file_path):
     # stores text extracted in routes.txt file
     try:
         # open the output file --> routes.txt
-        with open(output_file_path,'w',encoding='utf-8') as output:
+        with open(output_file_path,'a',encoding='utf-8') as output:
            # open the csv file of routes
            with open(routes_csv_path,mode='r',encoding='utf-8') as file:
                # read the routes which are in the format link text,URL
@@ -50,6 +50,6 @@ def scrape_text_from_routes(base_url,routes_csv_path,output_file_path):
                    scrapped_text=selenium_scrape_text_only(full_url)
                    # it returns the text content of the line
                    if scrapped_text:
-                       output.write(scrapped_text)
+                       output.write(scrapped_text+"\n")
     except Exception as e:
         print(f"Error processing route:{e}")
