@@ -6,7 +6,7 @@
    poetry install
    poetry shell
    ```
-3. Set up GEMINI_API_KEY in the .env file
+3. Set up GEMIpNI_API_KEY in the .env file
    ```
    GEMINI_API_KEY = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    ```
