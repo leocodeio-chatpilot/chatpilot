@@ -2,6 +2,7 @@ import csv
 import os
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from scrape.preprocess.text_processing import process_text
 from scrape.preprocess.route_processing import scrape_text_from_routes
 
@@ -18,7 +19,8 @@ def selenium_scrape_and_save_to_csv(url, website_name):
 
     try:
         # Initialize a WebDriver (e.g., Chrome)
-        driver = webdriver.Chrome()
+        service = Service("C:/WebDriver/chromedriver.exe")  # Specify the path if not in PATH
+        driver = webdriver.Chrome(service=service)
         # Navigate to the URL
         driver.get(url)
         # Allow JavaScript to execute
