@@ -38,9 +38,6 @@ class QueryRequest(BaseModel):
 def read_root():
     return {"message": "Welcome to the API"}
 
-
-
-
 @app.post("/scrape/")
 def scrape_and_store(scrape_request: ScrapeRequest):
     try:

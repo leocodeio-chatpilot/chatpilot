@@ -9,10 +9,10 @@ class GeminiConfig:
         genai.configure(api_key=os.environ["GEMINI_API_KEY"])
         
         generation_config = genai.GenerationConfig(
-            temperature=1,
-            top_p=0.95,
+            temperature=0.5,
+            top_p=0.80,
             top_k=64,
-            max_output_tokens=8192,
+            max_output_tokens=128,
         )
         
         model = genai.GenerativeModel(
@@ -21,18 +21,23 @@ class GeminiConfig:
 
             Guidelines:
             - Only answer questions based on the provided website content
-            - Provide clear, concise, and accurate responses
-            - If information is not available in the provided content, clearly state that
-            - Stay within the scope of the question asked
+            - Keep your answers as short as possible
+            - Provide clear, concise, and accurate responses in short single line responses
             - Use a professional and helpful tone
             - If multiple interpretations are possible, ask for clarification
             - Format responses in a structured and easy-to-read manner
+            - If the question is not related to the website content, politely inform the user
+            - If the question is not clear, ask for clarification
+            - Act like a QnA bot
+            - Answer in a conversational manner
             
             Do not:
             - Make assumptions beyond the provided content
             - Include external information or personal opinions
             - Provide information that wasn't specifically requested
-            - Speculate about information that isn't clearly stated""",
+            - Speculate about information that isn't clearly stated
+            - Respond with long answers""",
+
             generation_config=generation_config,
         )
         

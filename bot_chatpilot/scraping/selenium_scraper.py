@@ -15,19 +15,19 @@ class SeleniumScraper(BaseScraper):
             soup = self.get_page_content()
             
             # Process text
-            text_processor = TextProcessor(self.website_name)
+            text_processor = TextProcessor(self.website_name, self.output_folder)
             content = text_processor.process(soup)
             
             # Process routes
-            route_processor = RouteProcessor(self.output_folder)
-            route_processor.process(soup)
+            # route_processor = RouteProcessor(self.website_name, self.output_folder)
+            # route_processor.process(soup)
             
             # Process images
-            image_processor = ImageProcessor(self.output_folder)
-            image_processor.process(soup)
+            # image_processor = ImageProcessor(self.website_name, self.output_folder)
+            # image_processor.process(soup)
             
             return content
-            
+
         except Exception as e:
             print(f"Error scraping {self.url}: {e}")
             return None
