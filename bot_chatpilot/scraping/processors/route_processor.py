@@ -2,22 +2,30 @@ import csv
 import os
 from bs4 import BeautifulSoup
 from core.driver import WebDriverManager
+from .base import BaseProcessor
 
-class RouteProcessor:
-    def __init__(self, output_folder: str):
-        self.output_folder = output_folder
-        self.routes_file = os.path.join(output_folder, "selenium_output[routes].csv")
-        
+class RouteProcessor(BaseProcessor):
+    def __init__(self, website_name: str, output_folder: str):
+        super().__init__(website_name, output_folder)
+        self.routes_csv_file = os.path.join(output_folder, f"{website_name}_routes.csv")
+        self.routes_txt_file = os.path.join(output_folder, f"{website_name}_routes_text.txt")
+
     def process(self, soup: BeautifulSoup):
         # Extract and save links
         links = soup.find_all("a")
         self._save_routes(links)
         
         # Process each route's content
-        self._process_route_contents()
-        
+        complete_routes_content = self._process_route_contents()
+
+        # store the routes in the database
+        chunks = self._create_chunks(complete_routes_content)
+
+        # store the chunks in the database
+        self._store_chunks(chunks)
+
     def _save_routes(self, links):
-        with open(self.routes_file, mode="w", newline="", encoding="utf-8") as file:
+        with open(self.routes_csv_file, mode="w", newline="", encoding="utf-8") as file:
             csv_writer = csv.writer(file)
             csv_writer.writerow(["Link Text", "URL"])
             for link in links:
@@ -27,14 +35,13 @@ class RouteProcessor:
                     csv_writer.writerow([text, href])
                     
     def _process_route_contents(self):
-        routes_content_file = os.path.join(self.output_folder, "routes_content.txt")
-        
         try:
-            with open(self.routes_file, mode='r', encoding='utf-8') as routes_file:
+            complete_routes_content = ""
+            with open(self.routes_csv_file, mode='r', encoding='utf-8') as routes_file:
                 csv_reader = csv.reader(routes_file)
                 next(csv_reader)  # Skip header
                 
-                with open(routes_content_file, 'w', encoding='utf-8') as output_file:
+                with open(self.routes_txt_file, 'w', encoding='utf-8') as output_file:
                     for route in csv_reader:
                         if len(route) >= 2:
                             url = route[1]
@@ -43,6 +50,11 @@ class RouteProcessor:
                                 output_file.write(f"URL: {url}\n")
                                 output_file.write(f"Content: {content}\n")
                                 output_file.write("-" * 80 + "\n")
+                                complete_routes_content += content
+
+                # store the complete routes content in the file
+                self._store_text(complete_routes_content)
+                return complete_routes_content
         except Exception as e:
             print(f"Error processing route contents: {e}")
                                 
