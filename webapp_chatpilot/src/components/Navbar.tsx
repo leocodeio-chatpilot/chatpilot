@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import { styles } from "./styles";
 import { navLinks } from "../constants";
 import {
@@ -21,7 +20,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      if (scrollTop > 10) {
+      if (scrollTop > 0) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -53,12 +52,12 @@ const Navbar = () => {
             <img
               src={logoNamedLight}
               alt="logo"
-              className="w-48 h-12 object-contain hidden sm:block dark:hidden"
+              className="w-48 h-12 object-contain block dark:hidden"
             />
             <img
               src={logoNamedDark}
               alt="logo"
-              className="w-48 h-12 object-contain block sm:hidden dark:block"
+              className="w-48 h-12 object-contain hidden dark:block"
             />
           </div>
           <img

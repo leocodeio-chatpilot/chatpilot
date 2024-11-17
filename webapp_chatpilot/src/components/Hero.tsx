@@ -7,28 +7,25 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className={`relative w-full h-screen mx-auto`}>
-      <div
-        className={`absolute inset-0 top-[120px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
-      >
+    <section className="relative w-full h-screen mx-auto">
+      <div className="absolute inset-0 top-[120px] max-w-7xl mx-auto px-6 sm:px-16 flex flex-col sm:flex-row items-center sm:items-start gap-5">
         <div className="flex flex-col justify-center items-center mt-5">
           <div className="w-5 h-5 rounded-full bg-[#915EFF]" />
           <div className="w-1 sm:h-80 h-40 violet-gradient" />
         </div>
 
-        <div>
-          <h1 className={`${styles.heroHeadText} text-white dark:text-black`}>
+        <div className="text-center sm:text-left">
+          <h1 className="font-black text-white dark:text-black text-[40px] xs:text-[50px] sm:text-[60px] lg:text-[80px] lg:leading-[98px] mt-2">
             Chat<span className="text-[#915EFF]">Pilot</span>
           </h1>
-          <p
-            className={`${styles.heroSubText} mt-2 text-white dark:text-black`}
-          >
+          <p className="text-[16px] xs:text-[20px] sm:text-[26px] lg:text-[30px] text-white dark:text-black mt-2">
             Make your website talk!
           </p>
         </div>
       </div>
-      <div className=" w-full flex justify-end items-end">
-        <div className="w-full h-[550px] ">
+      
+      <div className="w-full flex justify-end items-end">
+        <div className="w-full h-[300px] sm:h-[550px]">
           <Canvas
             camera={{
               position: [0, 0, 5],
@@ -45,13 +42,13 @@ const Hero = () => {
                 maxPolarAngle={Math.PI / 2}
                 minPolarAngle={Math.PI / 2}
               />
-
               <MichiBot isMobile={window.innerWidth <= 500} />
             </Suspense>
           </Canvas>
         </div>
       </div>
-      <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
+      
+      <div className="absolute bottom-10 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
             <motion.div
