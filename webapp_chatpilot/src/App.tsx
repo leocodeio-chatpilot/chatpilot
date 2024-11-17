@@ -1,10 +1,14 @@
 import "./App.css";
-import { ToggleButton } from "../context/ThemeToggle";
+import { Hero, Navbar } from "./components";
+
 function App() {
   return (
     <>
-      <p className="text-3xl font-bold dark:text-white">hello</p>
-      <ToggleButton />
+      <div className="bg-hero-bg bg-cover bg-no-repeat bg-center dark:bg-hero-bg-light">
+        <Navbar />
+        <Hero />
+      </div>
+      
     </>
   );
 }
