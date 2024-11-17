@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import { styles } from "./styles";
 import { navLinks } from "../constants";
 import {
@@ -21,7 +20,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
+      if (scrollTop > 0) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -38,7 +37,7 @@ const Navbar = () => {
       className={`${
         styles.paddingX
       } w-full flex items-center py-5 fixed top-0 z-20 ${
-        scrolled ? "bg-primary" : "bg-transparent"
+        scrolled ? "bg-primary dark:bg-gray-300" : "bg-transparent"
       }`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
@@ -53,12 +52,12 @@ const Navbar = () => {
             <img
               src={logoNamedLight}
               alt="logo"
-              className="w-48 h-12 object-contain hidden sm:block dark:hidden"
+              className="w-48 h-12 object-contain block dark:hidden"
             />
             <img
               src={logoNamedDark}
               alt="logo"
-              className="w-48 h-12 object-contain block sm:hidden dark:block"
+              className="w-48 h-12 object-contain hidden dark:block"
             />
           </div>
           <img
@@ -84,8 +83,10 @@ const Navbar = () => {
             <li
               key={nav.id}
               className={`${
-                active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer dark:text-black dark:hover:text-gray-700`}
+                active === nav.title
+                  ? "text-white dark:text-secondary"
+                  : "text-secondary dark:text-black"
+              } hover:text-white text-[18px] font-medium cursor-pointer dark:hover:text-gray-700`}
               onClick={() => setActive(nav.title)}
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
@@ -114,7 +115,7 @@ const Navbar = () => {
                   key={nav.id}
                   className={`font-poppins font-medium cursor-pointer text-[16px] ${
                     active === nav.title
-                      ? "text-white"
+                      ? "text-white dark:text-secondary"
                       : "text-secondary dark:text-black"
                   }`}
                   onClick={() => {
