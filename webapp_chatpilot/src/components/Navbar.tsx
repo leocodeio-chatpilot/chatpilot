@@ -53,18 +53,18 @@ const Navbar = () => {
             <img
               src={logoNamedLight}
               alt="logo"
-              className="w-48 h-12 object-contain dark:hidden"
+              className="w-48 h-12 object-contain hidden sm:block dark:hidden"
             />
             <img
               src={logoNamedDark}
               alt="logo"
-              className="w-48 h-12 object-contain hidden dark:block"
+              className="w-48 h-12 object-contain block sm:hidden dark:block"
             />
           </div>
           <img
             src={lightLogo}
             alt="logo"
-            className="w-9 h-9 object-contain dark:hidden"
+            className="w-9 h-9 object-contain dark:hidden hover:scale-105 transition-all duration-300 ease-in-out"
           />
           <img
             src={darkLogo}
@@ -94,7 +94,8 @@ const Navbar = () => {
           <ToggleButton />
         </ul>
 
-        <div className="sm:hidden flex flex-1 justify-end items-center">
+        <div className="sm:hidden flex gap-4 items-center justify-end">
+          <ToggleButton />
           <img
             src={toggle ? close : menu}
             alt="menu"
@@ -112,7 +113,9 @@ const Navbar = () => {
                 <li
                   key={nav.id}
                   className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title ? "text-white" : "text-secondary"
+                    active === nav.title
+                      ? "text-white"
+                      : "text-secondary dark:text-black"
                   }`}
                   onClick={() => {
                     setToggle(!toggle);
@@ -122,7 +125,6 @@ const Navbar = () => {
                   <a href={`#${nav.id}`}>{nav.title}</a>
                 </li>
               ))}
-              <ToggleButton />
             </ul>
           </div>
         </div>
