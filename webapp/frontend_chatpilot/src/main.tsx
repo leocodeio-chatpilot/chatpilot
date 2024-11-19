@@ -7,10 +7,8 @@ import ThemeToggleProvider from "./context/ThemeToggle.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
       <ThemeToggleProvider>
         <App />
       </ThemeToggleProvider>
-    </BrowserRouter>
   </StrictMode>
 );

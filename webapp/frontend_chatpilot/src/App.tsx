@@ -1,19 +1,15 @@
-import "./App.css";
-import { Contact, Hero, Navbar, StarsCanvas } from "./components";
-
-function App() {
+import Entry from "./Entry";
+import NotFound from "./components/NotFound";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+const App = () => {
   return (
-    <div className="w-screen h-screen">
-      <div className="h-full w-full bg-hero-bg bg-cover bg-no-repeat bg-center dark:bg-hero-bg-light">
-        <Navbar />
-        <Hero />
-        <div className="w-full relative h-[1000px] z-0">
-          <Contact />
-          <StarsCanvas />
-        </div>
-      </div>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Entry />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
