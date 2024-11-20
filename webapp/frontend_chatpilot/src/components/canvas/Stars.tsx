@@ -2,6 +2,7 @@ import { useState, useRef, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.cjs";
+import { useTheme } from "../../context/ThemeToggle";
 
 const Stars = (props: any) => {
   const ref = useRef<any>();
@@ -17,13 +18,15 @@ const Stars = (props: any) => {
     }
   });
 
+  const { theme } = useTheme();
+
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent
-          color="#ffffff"
-          size={0.004}
+          color={theme === "light" ? "white" : "black"}
+          size={0.006}
           sizeAttenuation={true}
           depthWrite={false}
         />
@@ -34,7 +37,7 @@ const Stars = (props: any) => {
 
 const StarsCanvas = () => {
   return (
-    <div className="absolute top-0 left-0 w-full h-full bg-black z-[-1]">
+    <div className="absolute top-0 left-0 w-full h-full bg-black z-[-1] dark:bg-white">
       <Canvas camera={{ position: [0, 0, 1] }}>
         <Suspense fallback={null}>
           <Stars />

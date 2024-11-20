@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../functions/signup";
-import { useNavigate } from "react-router-dom";
 import { checkSignin } from "../functions/checkSignin";
+import { motion } from "framer-motion";
+import { slideIn } from "./utils/motion";
+import { FaHome } from "react-icons/fa";
+import { ToggleButton } from "../context/ThemeToggle";
+import { StarsCanvas } from "./canvas";
+
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  
-  // check if user is already signed in using cookies
+
   useEffect(() => {
     const isSignedIn = checkSignin();
     if (isSignedIn) {
-      navigate("/dashboard");
+      navigate("/");
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -23,7 +27,6 @@ const Signup = () => {
     e.preventDefault();
     try {
       const response = await signup(username, email, password);
-      console.log(response.data, response.status);
       if (response.status === 201) {
         setUsername("");
         setEmail("");
@@ -36,49 +39,85 @@ const Signup = () => {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col items-center">
-      <h1 className="text-2xl font-bold my-4">Signup</h1>
-      <form className="flex flex-col w-1/3 gap-4" onSubmit={handleSignup}>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            defaultValue={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
-            autoComplete="username"
-            className="p-2 rounded-md border-2 border-gray-300"
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            defaultValue={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            autoComplete="email"
-            className="p-2 rounded-md border-2 border-gray-300"
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            defaultValue={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            autoComplete="new-password"
-            className="p-2 rounded-md border-2 border-gray-300"
-          />
-        </div>
-        <button className="bg-blue-500 text-white p-2 rounded-md" type="submit">
-          Signup
-        </button>
-      </form>
-      <Link to="/signin" className="text-blue-500 mt-4">
-        Already have an account? Signin
-      </Link>
+    <div className="relative w-screen h-screen">
+      <div className="h-screen w-screen flex flex-col items-center">
+        <motion.div
+          variants={slideIn("left", "tween", 0.2, 1)}
+          className="flex-[0.75] bg-transparent p-8 rounded-2xl w-full max-w-md"
+        >
+          <h1 className="text-[30px] xs:text-[40px] sm:text-[50px] text-white dark:text-black font-black text-center mb-8">
+            Sign<span className="text-secondary">up</span>
+          </h1>
+          <Link
+            to="/signin"
+            className="text-secondary   hover:text-purple-700 transition-colors mt-6 block text-center text-white dark:text-black hover:text-gray-500 dark:hover:text-gray-200"
+          >
+            Already have an account? Sign in
+          </Link>
+          <form className="flex flex-col gap-6" onSubmit={handleSignup}>
+            <div className="flex flex-col gap-2">
+              <label className="text-white dark:text-black font-medium">
+                Username
+              </label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter your username"
+                autoComplete="username"
+                className="bg-gray-100 dark:bg-tertiary py-4 px-6 placeholder:text-gray-500 
+                dark:placeholder:text-secondary text-black rounded-lg outline-none 
+                border-none font-medium"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-white dark:text-black font-medium">
+                Email
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                autoComplete="email"
+                className="bg-gray-100 dark:bg-tertiary py-4 px-6 placeholder:text-gray-500 
+                dark:placeholder:text-secondary text-black rounded-lg outline-none 
+                border-none font-medium"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-white dark:text-black font-medium">
+                Password
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                autoComplete="new-password"
+                className="bg-gray-100 dark:bg-tertiary py-4 px-6 placeholder:text-gray-500 
+                dark:placeholder:text-secondary text-black rounded-lg outline-none 
+                border-none font-medium"
+              />
+            </div>
+            <div className="flex gap-2 items-center">
+              <button
+                type="submit"
+                className="bg-secondary py-3 px-8 rounded-xl text-white 
+                font-bold hover:bg-purple-700 transition-colors"
+              >
+                Sign up
+              </button>
+              <ToggleButton />
+              <Link to="/">
+              <FaHome size={30} className="text-white dark:text-black" />
+
+              </Link>
+            </div>
+          </form>
+        </motion.div>
+      </div>
+      <StarsCanvas />
     </div>
   );
 };

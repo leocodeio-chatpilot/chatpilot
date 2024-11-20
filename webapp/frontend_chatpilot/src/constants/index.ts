@@ -12,3 +12,26 @@ export const navLinks = [
     title: "Contact",
   },
 ];
+
+export const userNotSignedInLinks = [
+  {
+    id: "signin",
+    title: "Sign in",
+  },
+];
+
+
+export const userSignedInLinks = [
+  {
+    id: "getstarted",
+    title: "Get Started",
+  },
+];
+
+
+export const logoutLinks = [
+  {
+    id: "signout",
+    title: "Sign out",
+  },
+];

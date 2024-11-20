@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { styles } from "./styles";
-import { navLinks } from "../constants";
+import {
+  logoutLinks,
+  navLinks,
+  userNotSignedInLinks,
+  userSignedInLinks,
+} from "../constants";
 import {
   lightLogo,
   darkLogo,
@@ -11,11 +16,16 @@ import {
   logoNamedLight,
 } from "../assets";
 import { ToggleButton } from "../context/ThemeToggle";
+import { checkSignin } from "../functions/checkSignin";
+import { signout } from "../functions/signout";
+import Navlinks from "./utils/Navlinks";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const [singedIn, setSingedIn] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +40,14 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!checkSignin()) {
+      setSingedIn(false);
+    } else {
+      setSingedIn(true);
+    }
   }, []);
 
   return (
@@ -79,19 +97,7 @@ const Navbar = () => {
         </div>
 
         <ul className="list-none hidden sm:flex flex-row gap-10">
-          {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`${
-                active === nav.title
-                  ? "text-white dark:text-secondary"
-                  : "text-secondary dark:text-black"
-              } hover:text-white text-[18px] font-medium cursor-pointer dark:hover:text-gray-700`}
-              onClick={() => setActive(nav.title)}
-            >
-              <a href={`#${nav.id}`}>{nav.title}</a>
-            </li>
-          ))}
+          <Navlinks active={active} setActive={setActive} singedIn={singedIn} />
           <ToggleButton />
         </ul>
 
@@ -110,22 +116,11 @@ const Navbar = () => {
             } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
           >
             <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
-              {navLinks.map((nav) => (
-                <li
-                  key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title
-                      ? "text-white dark:text-secondary"
-                      : "text-secondary dark:text-black"
-                  }`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActive(nav.title);
-                  }}
-                >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
-                </li>
-              ))}
+              <Navlinks
+                active={active}
+                setActive={setActive}
+                singedIn={singedIn}
+              />
             </ul>
           </div>
         </div>
