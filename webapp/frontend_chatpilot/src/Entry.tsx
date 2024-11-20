@@ -7,7 +7,7 @@ function Entry() {
       <div className="h-full w-full bg-hero-bg bg-cover bg-no-repeat bg-center dark:bg-hero-bg-light">
         <Navbar />
         <Hero />
-        <div className="w-full relative h-[1000px] z-0">
+        <div className="w-full relative h-auto z-0">
           <Contact />
           <StarsCanvas />
         </div>

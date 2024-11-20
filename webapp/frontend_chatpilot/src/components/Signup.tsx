@@ -50,7 +50,7 @@ const Signup = () => {
           </h1>
           <Link
             to="/signin"
-            className="text-secondary   hover:text-purple-700 transition-colors mt-6 block text-center text-white dark:text-black hover:text-gray-500 dark:hover:text-gray-200"
+            className="text-secondary   hover:text-purple-700 transition-colors mt-6 block text-center text-white dark:text-black hover:text-gray-500 dark:hover:text-gray-600"
           >
             Already have an account? Sign in
           </Link>

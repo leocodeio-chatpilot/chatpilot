@@ -3,9 +3,17 @@ export const navLinks = [
     id: "about",
     title: "About",
   },
+  // {
+  //   id: "work",
+  //   title: "Work",
+  // },
   {
-    id: "work",
-    title: "Work",
+    id: "howitworks",
+    title: "How it works",
+  },
+  {
+    id: "pricing",
+    title: "Pricing",
   },
   {
     id: "contact",
