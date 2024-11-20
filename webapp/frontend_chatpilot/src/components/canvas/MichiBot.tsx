@@ -15,7 +15,6 @@ export function MichiBot({ isMobile }: { isMobile: boolean }) {
   }, [actions]);
 
   return (
-
     <group ref={group as any} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={isMobile ? 90.5 : 120.5}>
         <group rotation={[Math.PI / 2, 0, 0]}>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ToggleButton } from "../context/ThemeToggle"
 
 const NotFound = () => {
@@ -11,9 +12,9 @@ const NotFound = () => {
         <h1 className="text-4xl font-bold mb-4"> Page Not Found</h1>
         <p className="text-lg mb-8">Looks like this page got sucked into a black hole...</p>
         <ToggleButton />
-        <a href="/" className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors dark:bg-purple-200 dark:hover:bg-purple-500 dark:text-gray-900">
+        <Link to="/" className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors dark:bg-purple-200 dark:hover:bg-purple-500 dark:text-gray-900">
           Return Home
-        </a>
+        </Link>
       </div>
     )
   }

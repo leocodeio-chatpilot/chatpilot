@@ -15,7 +15,7 @@ const Signout = () => {
     }
   };
   return (
-    <div>
+    <div className="flex justify-center items-center h-screen">
         <button
     className="bg-red-500 text-white p-2 rounded-md"
     onClick={handleSignout}
