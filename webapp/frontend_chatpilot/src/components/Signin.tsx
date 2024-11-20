@@ -84,7 +84,7 @@ const Signin = () => {
                 border-none font-medium"
               />
             </div>
-            <div className="w-full flex gap-2 items-center justify-start">
+            <div className="w-full flex gap-4 items-center justify-start">
               <button
                 type="submit"
                 className="bg-secondary py-3 px-8 rounded-xl text-white 

@@ -100,7 +100,7 @@ const Signup = () => {
                 border-none font-medium"
               />
             </div>
-            <div className="flex gap-2 items-center">
+            <div className="w-full flex gap-4 items-center justify-start">
               <button
                 type="submit"
                 className="bg-secondary py-3 px-8 rounded-xl text-white 
@@ -110,8 +110,7 @@ const Signup = () => {
               </button>
               <ToggleButton />
               <Link to="/">
-              <FaHome size={30} className="text-white dark:text-black" />
-
+                <FaHome size={30} className="text-white dark:text-black" />
               </Link>
             </div>
           </form>
