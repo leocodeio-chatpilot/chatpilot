@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { styles } from "./styles";
-import {
-  logoutLinks,
-  navLinks,
-  userNotSignedInLinks,
-  userSignedInLinks,
-} from "../constants";
 import {
   lightLogo,
   darkLogo,
@@ -17,7 +11,6 @@ import {
 } from "../assets";
 import { ToggleButton } from "../context/ThemeToggle";
 import { checkSignin } from "../functions/checkSignin";
-import { signout } from "../functions/signout";
 import Navlinks from "./utils/Navlinks";
 
 const Navbar = () => {
