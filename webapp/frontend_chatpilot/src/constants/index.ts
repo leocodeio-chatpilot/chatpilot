@@ -1,8 +1,8 @@
 export const navLinks = [
-  {
-    id: "about",
-    title: "About",
-  },
+  // {
+  //   id: "about",
+  //   title: "About",
+  // },
   // {
   //   id: "work",
   //   title: "Work",
@@ -28,14 +28,7 @@ export const userNotSignedInLinks = [
   },
 ];
 
-
-export const userSignedInLinks = [
-  {
-    id: "getstarted",
-    title: "Get Started",
-  },
-];
-
+export const userSignedInLinks = [];
 
 export const logoutLinks = [
   {

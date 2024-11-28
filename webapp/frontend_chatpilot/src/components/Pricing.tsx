@@ -132,9 +132,9 @@ const Pricing = () => {
   ];
 
   return (
-    <div className="relative w-full h-[1000px] bg-black dark:bg-white flex flex-col items-center overflow-hidden">
+    <div className="relative w-full h-auto bg-black dark:bg-white flex flex-col items-center overflow-hidden">
       <div className="absolute h-full inset-0 bg-gradient-to-r from-purple-600 dark:from-slate-600 opacity-15 dark:opacity-30 animate-[spin_8s_linear_infinite]"></div>
-      <div id="pricing" className=" text-center">
+      <div id="pricing" className="mt-[-50px] text-center">
         <h2 className=" pt-24 sm:pt-32 text-[30px] xs:text-[40px] sm:text-[50px] text-white dark:text-black font-black">
           Simple, transparent <span className="text-secondary">pricing</span>
         </h2>
