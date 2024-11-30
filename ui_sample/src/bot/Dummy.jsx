@@ -29,7 +29,7 @@ const DummyChatbot = () => {
           },
           body: JSON.stringify({
             query_text: chatInput,
-            website_name: "react",
+            api_key: "react",
           }),
         }
       );
@@ -60,7 +60,8 @@ const DummyChatbot = () => {
 
   useEffect(() => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
     }
   }, [chatData]);
 

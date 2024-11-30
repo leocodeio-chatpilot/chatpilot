@@ -19,6 +19,12 @@ export const profileSchema = z.object({
   token: z.string(),
 });
 
+export const saveApiSchema = z.object({
+  userId: z.string(),
+  websiteName: z.string(),
+  websiteUrl: z.string(),
+});
+
 export type User = {
   id: string;
   email: string;
@@ -32,4 +38,10 @@ export type TokenPayload = {
 export type ResponseData = {
   message: string;
   payload: any;
+};
+
+export type SaveApiPaylod = {
+  userId: string;
+  websiteName: string;
+  websiteUrl: string;
 };

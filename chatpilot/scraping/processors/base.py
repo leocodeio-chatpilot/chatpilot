@@ -4,8 +4,8 @@ from core.database import ChromaDBManager
 from core.textfilter import TextFilter
 
 class BaseProcessor(ABC):
-    def __init__(self, website_name: str, output_folder: str):
-        self.website_name = website_name
+    def __init__(self, api_key: str, output_folder: str):
+        self.api_key = api_key
         self.output_folder = output_folder
         self.db_manager = ChromaDBManager()
         self.text_filter = TextFilter()
@@ -23,7 +23,7 @@ class BaseProcessor(ABC):
         for text_data in texts:
             transformed_text = self._transform_text(text_data["text"])
             self.db_manager.add_documents(
-                self.website_name,
+                self.api_key,
                 documents=[transformed_text],
                 ids=[text_data["id"]]
             )

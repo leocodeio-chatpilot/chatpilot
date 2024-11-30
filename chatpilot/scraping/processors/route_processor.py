@@ -5,10 +5,10 @@ from core.driver import WebDriverManager
 from .base import BaseProcessor
 
 class RouteProcessor(BaseProcessor):
-    def __init__(self, website_name: str, output_folder: str):
-        super().__init__(website_name, output_folder)
-        self.routes_csv_file = os.path.join(output_folder, f"{website_name}_routes.csv")
-        self.routes_txt_file = os.path.join(output_folder, f"{website_name}_routes_text.txt")
+    def __init__(self, api_key: str, output_folder: str):
+        super().__init__(api_key, output_folder)
+        self.routes_csv_file = os.path.join(output_folder, f"{api_key}_routes.csv")
+        self.routes_txt_file = os.path.join(output_folder, f"{api_key}_routes_text.txt")
 
     def process(self, soup: BeautifulSoup):
         # Extract and save links

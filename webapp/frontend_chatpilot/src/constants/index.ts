@@ -28,7 +28,12 @@ export const userNotSignedInLinks = [
   },
 ];
 
-export const userSignedInLinks = [];
+export const userSignedInLinks = [
+  {
+    id: "profile",
+    title: "Profile",
+  },
+];
 
 export const logoutLinks = [
   {

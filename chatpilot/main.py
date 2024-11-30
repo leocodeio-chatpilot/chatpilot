@@ -9,7 +9,7 @@ from scraping.selenium_scraper import SeleniumScraper
 app = FastAPI()
 
 from fastapi.middleware.cors import CORSMiddleware
-
+import uuid
 # Allow requests from frontend server (e.g., Vite on port 5173)
 app.add_middleware(
     CORSMiddleware,
@@ -25,14 +25,15 @@ similarity_search = SimilaritySearch()
 # Input model for scraping request
 class ScrapeRequest(BaseModel):
     url: str
-    website_name: str
 
 
 # Input model for query request
 class QueryRequest(BaseModel):
     query_text: str
-    website_name: str
+    api_key: str
 
+class SampleRequest(BaseModel):
+    url: str
 
 @app.get("/")
 def read_root():
@@ -40,11 +41,12 @@ def read_root():
 
 @app.post("/scrape/")
 def scrape_and_store(scrape_request: ScrapeRequest):
+    api_key = uuid.uuid4()
     try:
-        content = SeleniumScraper(
-            scrape_request.url, scrape_request.website_name
+        SeleniumScraper(
+            scrape_request.url, api_key
         ).scrape()
-        return {"message": "Scraping successful, content stored.", "content": content}
+        return api_key
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {str(e)}")
 
@@ -54,9 +56,20 @@ def query_content(query_request: QueryRequest):
     try:
         results = similarity_search.query(
             query_request.query_text, 
-            query_request.website_name
+            query_request.api_key
         )
         return {"results": results}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/sample/")
+def sample(sample_request: SampleRequest):
+    api_key = uuid.uuid4()
+    try:
+        SeleniumScraper(
+            sample_request.url, api_key
+        ).scrape_sample()
+        return api_key
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

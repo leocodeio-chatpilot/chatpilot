@@ -1,8 +1,18 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { slideIn } from "./utils/motion";
+import { useEffect, useState } from "react";
+import { checkSignin } from "../functions/checkSignin";
 
 const HowItWorks = () => {
+  const [singedIn, setSingedIn] = useState(false);
+  useEffect(() => {
+    if (!checkSignin()) {
+      setSingedIn(false);
+    } else {
+      setSingedIn(true);
+    }
+  }, []);
   return (
     <section
       id="howitworks"
@@ -76,7 +86,7 @@ const HowItWorks = () => {
               View Docs
             </Link>
             <Link
-              to="/try"
+              to={singedIn ? "/try" : "/signin"}
               className="px-8 py-4 rounded-xl bg-transparent text-white dark:text-purple-800 
               font-bold border-2 border-purple-600 hover:bg-purple-600 hover:text-white
               transition-all duration-300 text-center min-w-[200px] transform hover:scale-105

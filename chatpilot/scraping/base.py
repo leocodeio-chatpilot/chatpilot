@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup
 from core.driver import WebDriverManager
 
 class BaseScraper(ABC):
-    def __init__(self, url: str, website_name: str):
+    def __init__(self, url: str, api_key: str):
         self.url = url
-        self.website_name = website_name
+        self.api_key = api_key
         
     @abstractmethod
     def scrape(self):

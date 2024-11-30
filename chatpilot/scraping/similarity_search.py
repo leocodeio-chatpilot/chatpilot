@@ -6,11 +6,11 @@ class SimilaritySearch:
         self.model = GeminiConfig.initialize()
         self.db_manager = ChromaDBManager()
     
-    def query(self, query_text: str, website_name: str) -> str:
+    def query(self, query_text: str, api_key: str) -> str:
         try:
             # Get similar documents from ChromaDB
             results = self.db_manager.query_documents(
-                website_name,
+                api_key,
                 query_text,
                 n_results=3
             )
