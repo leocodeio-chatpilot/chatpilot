@@ -6,7 +6,7 @@ import Docs from "./Docs";
 import Signin from "./Signin";
 import Signup from "./Signup";
 import Try from "./Try";
-
+import Profile from "./Profile";
 export {
   StarsCanvas,
   Navbar,
@@ -16,4 +16,5 @@ export {
   Signin,
   Signup,
   Try,
+  Profile,
 };

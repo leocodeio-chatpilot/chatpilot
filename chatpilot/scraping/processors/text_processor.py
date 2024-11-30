@@ -4,9 +4,9 @@ from core.database import ChromaDBManager
 from .base import BaseProcessor
 
 class TextProcessor(BaseProcessor):
-    def __init__(self, website_name: str, output_folder: str):
-        super().__init__(website_name, output_folder)
-        self.text_file = os.path.join(output_folder, f"{website_name}_text.txt")
+    def __init__(self, api_key: str, output_folder: str):
+        super().__init__(api_key, output_folder)
+        self.text_file = os.path.join(output_folder, f"{api_key}_text.txt")
 
     def process(self, soup: BeautifulSoup):
         content = soup.get_text()

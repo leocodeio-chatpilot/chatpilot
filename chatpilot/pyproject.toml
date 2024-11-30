@@ -17,6 +17,7 @@ setuptools = "^75.1.0"
 textblob = "^0.18.0.post0"
 google-generativeai = "^0.8.3"
 protobuf = "^4.21.12"
+uvicorn = "^0.32.1"
 
 [build-system]
 requires = ["poetry-core"]

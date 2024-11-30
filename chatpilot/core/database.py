@@ -5,8 +5,8 @@ class ChromaDBManager:
     def __init__(self, db_path: str = "./vector_database/"):
         self.client = chromadb.PersistentClient(path=db_path)
     
-    def get_or_create_collection(self, website_name: str):
-        collection_name = f"{website_name}_data"
+    def get_or_create_collection(self, api_key: str):
+        collection_name = f"{api_key}_data"
         return self.client.get_or_create_collection(collection_name)
     
     def add_documents(self, collection_name: str, documents: List[str], ids: List[str]):
