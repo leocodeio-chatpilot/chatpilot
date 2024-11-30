@@ -26,9 +26,9 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
 
     if (user) {
       res.status(409).json({
-        message: "An account with this email already exists",
+        message: "An account with this email or username already exists",
         payload: {
-          details: "Email already exists",
+          details: "Email or username already exists",
         },
       });
       return;
@@ -51,7 +51,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
 
     res.status(201).json({
       message: "User created successfully",
-      user: newUser,
+      payload: { user: newUser },
     });
   } catch (error) {
     console.error("Signup error:", error);

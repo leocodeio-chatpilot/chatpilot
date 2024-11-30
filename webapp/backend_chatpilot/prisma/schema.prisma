@@ -13,13 +13,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id    String     @id @default(cuid())
-  email String  @unique
-  username String @unique
-  password String
-  api_key String?
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String   @unique
+  password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  Modelapi Modelapi[]
+}
+
+model Modelapi {
+  id String @id @default(cuid())
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  website_name String
+  website_url  String
+  api_key      String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }

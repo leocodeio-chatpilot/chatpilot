@@ -1,4 +1,3 @@
-import userRouter from "./routes/v1/user";
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -7,13 +6,16 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 dotenv.config();
 
+import userRouter from "./routes/v1/user";
+import modelRouter from "./routes/v1/model";
+
 const app = express();
 
 const corsOptions = {
   origin: process.env.FRONTEND_URL || "http://localhost:3000",
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions));
@@ -22,7 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/user/v1", userRouter);
-
+app.use("/model/v1", modelRouter);
+  
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
