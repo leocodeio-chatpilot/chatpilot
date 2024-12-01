@@ -1,21 +1,20 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { slideIn } from "./utils/motion";
 import { StarsCanvas } from "./canvas";
 import { useNavigate } from "react-router-dom";
 import { checkSignin } from "../functions/checkSignin";
-import axios from "axios";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { ToggleButton } from "../context/ThemeToggle";
-import { div } from "framer-motion/client";
+import { apiRecord } from "../constants/formats";
+import fetchUserData from "../functions/fetchUser";
 
 const Profile = () => {
-  const [userData, setUserData] = useState({
-    email: "",
-    username: "",
-    api_key: "",
-  });
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [apiKeys, setApiKeys] = useState<apiRecord[]>([]);
+  const [selectedWebsite, setSelectedWebsite] = useState("N/A");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -26,26 +25,37 @@ const Profile = () => {
       return;
     }
 
-    const fetchUserData = async () => {
+    const loadUserData = async () => {
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_APP_USER_BACKEND_API_URL}/profile`,
-          { withCredentials: true }
-        );
-        if (response.status === 200) {
-          console.log(response.data.payload.user);
-          setUserData(response.data.payload.user);
+        const userData = await fetchUserData();
+        console.log(userData);
+        if (userData.username) {
+          setUsername(userData.username);
+          setEmail(userData.email);
+          if (userData.apiKeys && userData.apiKeys.length > 0) {
+            setApiKeys(userData.apiKeys);
+            setSelectedWebsite(userData.apiKeys[0].website_name.toString());
+          }
         }
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        console.error("Error loading user data:", error);
         navigate("/signin");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchUserData();
-  }, [navigate]);
+    loadUserData();
+    console.log(apiKeys);
+  }, []);
+
+  const handleWebsiteChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedWebsite(event.target.value);
+  };
+
+  const selectedApiKey =
+    apiKeys.find((api) => api.website_name === selectedWebsite)?.api_key ||
+    "N/A";
 
   if (loading) {
     return (
@@ -82,7 +92,7 @@ const Profile = () => {
                   Username
                 </label>
                 <div className="bg-gray-100 dark:bg-tertiary py-4 px-6 text-black rounded-lg">
-                  {userData.username}
+                  {username}
                 </div>
               </div>
 
@@ -91,29 +101,48 @@ const Profile = () => {
                   Email
                 </label>
                 <div className="bg-gray-100 dark:bg-tertiary py-4 px-6 text-black rounded-lg">
-                  {userData.email}
+                  {email}
                 </div>
               </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-white dark:text-black font-medium">
+                  Select Website
+                </label>
+                <select
+                  className="bg-gray-100 dark:bg-tertiary py-4 px-6 text-black rounded-lg"
+                  value={selectedWebsite}
+                  onChange={handleWebsiteChange}
+                >
+                  <option value="N/A">N/A</option>
+                  {apiKeys.map((api: apiRecord) => (
+                    <option
+                      key={api.website_name.toString()}
+                      value={api.website_name.toString()}
+                    >
+                      {api.website_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <div className="flex flex-col gap-2">
                 <label className="text-white dark:text-black font-medium">
                   API Key
                 </label>
                 <div className="bg-gray-100 dark:bg-tertiary py-4 px-6 text-black rounded-lg">
-                  {userData.api_key
-                    ? userData.api_key
-                    : "Create one from below"}
+                  {selectedApiKey ? selectedApiKey : "N/A"}
                 </div>
               </div>
-              {userData.api_key ? null : (
-                <div className="flex flex-col gap-2">
-                  <Link
-                    to="/try"
-                    className="text-white dark:text-black hover:text-secondary transition-colors w-full text-center bg-secondary py-4 px-6 rounded-lg hover:bg-secondary/80 hover:text-black"
+
+              <div className="flex flex-col gap-2">
+                <Link
+                  to="/try"
+                  className="text-white dark:text-black hover:text-secondary transition-colors w-full text-center bg-secondary py-4 px-6 rounded-lg hover:bg-secondary/80 hover:text-black"
                 >
-                    Create API Key
-                  </Link>
-                </div>
-              )}
+                  Create new API
+                </Link>
+              </div>
             </div>
           </div>
         </motion.div>
