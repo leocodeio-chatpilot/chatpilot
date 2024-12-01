@@ -3,13 +3,13 @@ import axios from "axios";
 export const signin = async (email: string, password: string) => {
   try {
     const response = await axios.post(
-      `${import.meta.env.VITE_APP_USER_BACKEND_API_URL}/signin`,
+      `${import.meta.env.VITE_APP_USER_BACKEND_USER_URL}/signin`,
       {
         email,
         password,
       },
       {
-        withCredentials: true
+        withCredentials: true,
       }
     );
     if (response.status === 200) {

@@ -15,11 +15,11 @@ export const signup = async (
     console.log("Attempting signup with payload:", signupPayload);
     console.log(
       "API URL:",
-      `${import.meta.env.VITE_APP_USER_BACKEND_API_URL}/signup`
+      `${import.meta.env.VITE_APP_USER_BACKEND_USER_URL}/signup`
     );
 
     const response = await axios.post(
-      `${import.meta.env.VITE_APP_USER_BACKEND_API_URL}/signup`,
+      `${import.meta.env.VITE_APP_USER_BACKEND_USER_URL}/signup`,
       signupPayload,
       {
         withCredentials: true,
