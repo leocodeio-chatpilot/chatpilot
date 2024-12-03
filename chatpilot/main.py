@@ -5,8 +5,13 @@ from pydantic import BaseModel
 
 from scraping.similarity_search import SimilaritySearch
 from scraping.selenium_scraper import SeleniumScraper
+
+from fastapi.openapi.docs import get_swagger_ui_html
+from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
+
 # Initialize FastAPI app
-app = FastAPI()
+app = FastAPI(docs_url=None, redoc_url=None)
 
 from fastapi.middleware.cors import CORSMiddleware
 import uuid
@@ -38,6 +43,24 @@ class SampleRequest(BaseModel):
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the API"}
+
+security = HTTPBasic()
+
+def authenticate_user(credentials: HTTPBasicCredentials):
+    correct_username = "admin"
+    correct_password = "password"
+    if credentials.username != correct_username or credentials.password != correct_password:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect credentials",
+            headers={"WWW-Authenticate": "Basic"},
+        )
+
+@app.get("/docs")
+def get_docs(credentials: HTTPBasicCredentials = Depends(security)):
+    authenticate_user(credentials)
+    return get_swagger_ui_html(openapi_url="/openapi.json", title="docs")
+
 
 @app.post("/scrape/")
 def scrape_and_store(scrape_request: ScrapeRequest):
