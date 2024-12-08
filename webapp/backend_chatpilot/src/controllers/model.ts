@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import client from "../db/client";
 import { saveApiSchema } from "../types";
+import axios from "axios";
 
 export const saveApikey = async (req: Request, res: Response) => {
   const saveApiData = saveApiSchema.safeParse(req.body);
@@ -14,12 +15,30 @@ export const saveApikey = async (req: Request, res: Response) => {
     return;
   }
   const { userId, websiteUrl, websiteName } = saveApiData.data;
-  console.log(userId, websiteName, websiteUrl);
-  //   const user = await client.user.findUnique({ where: { id: userId } });
-  //   console.log(user);
+  // console.log(userId, websiteName, websiteUrl);
+  // const user = await client.user.findUnique({ where: { id: userId } });
+  // console.log(user);
   try {
     // we will make a call to chatpilot here
-    const apikey = "updatedbychatpilot";
+    let apikey = "updatedbychatpilot";
+
+    try {
+      const chatpilotApi = process.env.BACKEND_PYTHON_MODEL_API;
+      const apikeyResponse = await axios.post(`${chatpilotApi}/sample`, {
+        url: websiteUrl,
+      });
+      // console.log(apikeyResponse);
+      apikey = apikeyResponse.data;
+    } catch (err: any) {
+      console.log("error while getting the apikey from chatpilot server");
+      res.status(500).send({
+        message: "An unexpected error occurred during signup",
+        payload: {
+          details: "Internal server error",
+        },
+      });
+      return;
+    }
     const modelApiPaylod = {
       user_id: userId,
       website_name: websiteName,
