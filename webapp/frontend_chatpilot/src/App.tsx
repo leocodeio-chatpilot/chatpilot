@@ -1,7 +1,7 @@
 import Entry from "./Entry";
 import NotFound from "./components/NotFound";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Signin, Signup, Docs, Try, Profile } from "./components";
+import { Signin, Signup, Docs, Try, Profile, ChatArea } from "./components";
 import "./App.css";
 
 const App = () => {
@@ -14,6 +14,7 @@ const App = () => {
         <Route path="/docs" element={<Docs />} />
         <Route path="/try" element={<Try />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/chat" element={<ChatArea />} /> 
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -25,6 +25,10 @@ export const saveApiSchema = z.object({
   websiteUrl: z.string(),
 });
 
+export const generateApiSchema = z.object({
+  url: z.string(),
+});
+
 export type User = {
   id: string;
   email: string;

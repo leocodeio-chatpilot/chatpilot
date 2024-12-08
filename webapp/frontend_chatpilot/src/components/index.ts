@@ -7,6 +7,7 @@ import Signin from "./Signin";
 import Signup from "./Signup";
 import Try from "./Try";
 import Profile from "./Profile";
+import ChatArea from "./ChatArea";
 export {
   StarsCanvas,
   Navbar,
@@ -17,4 +18,5 @@ export {
   Signup,
   Try,
   Profile,
+  ChatArea,
 };
