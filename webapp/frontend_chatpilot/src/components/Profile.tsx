@@ -28,7 +28,7 @@ const Profile = () => {
     const loadUserData = async () => {
       try {
         const userData = await fetchUserData();
-        console.log(userData);
+        // console.log("debug log 1 at profile.tsx:", userData);
         if (userData.username) {
           setUsername(userData.username);
           setEmail(userData.email);
@@ -46,7 +46,7 @@ const Profile = () => {
     };
 
     loadUserData();
-    console.log(apiKeys);
+    // console.log("debug log 2: apikyes at profile", apiKeys);
   }, []);
 
   const handleWebsiteChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

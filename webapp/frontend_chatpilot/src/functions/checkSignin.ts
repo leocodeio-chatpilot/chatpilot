@@ -6,7 +6,7 @@ export const checkSignin = () => {
       return acc;
     }, {} as { [key: string]: string });
 
-    return !!cookies["Authorization"];  
+    return !!cookies["Authorization"];
   } catch (error) {
     console.error("Error checking signin status:", error);
     return false;

@@ -37,6 +37,8 @@ export type User = {
 
 export type TokenPayload = {
   id: string;
+  email: string;
+  username: string;
 };
 
 export type ResponseData = {

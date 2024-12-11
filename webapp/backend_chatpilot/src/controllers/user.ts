@@ -81,7 +81,7 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
     const user = await client.user.findFirst({
       where: { email },
     });
-
+    console.log("debug log 1: user", user);
     if (!user) {
       res.status(401).json({
         error: "Invalid credentials",
@@ -103,7 +103,11 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const token = createToken({ id: user.id });
+    const token = createToken({
+      id: user.id,
+      email: user.email,
+      username: user.username,
+    });
     createCookie(req, res, token, {
       message: "Signin successful",
       payload: {},
