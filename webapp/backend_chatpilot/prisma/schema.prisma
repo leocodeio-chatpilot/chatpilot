@@ -32,7 +32,7 @@ model Modelapi {
 
   website_name String
   website_url  String
-  api_key      String
+  api_key      String   @unique
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
