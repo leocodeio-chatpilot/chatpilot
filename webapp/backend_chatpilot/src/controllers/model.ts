@@ -4,6 +4,7 @@ import { saveApiSchema } from "../types";
 import axios from "axios";
 
 export const saveApikey = async (req: Request, res: Response) => {
+  console.log("save api key called");
   const saveApiData = saveApiSchema.safeParse(req.body);
   if (!saveApiData.success) {
     res.status(400).json({
