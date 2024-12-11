@@ -5,11 +5,14 @@ import { FaHome } from "react-icons/fa";
 import { ToggleButton } from "../context/ThemeToggle";
 import axios from "axios";
 import { getAuthTokenFromCookie } from "../functions/getAuthCookie";
+import { VscLoading } from "react-icons/vsc";
+import ChatArea from "./ChatArea";
 
 const Try = () => {
   const [websiteUrl, setWebsiteUrl] = useState("");
   const [websiteName, setWebsiteName] = useState("");
   const [creatingApiProcess, setCreatingApiProcess] = useState(false);
+  const [chat, setChat] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,12 +76,17 @@ const Try = () => {
           />
         ))}
       </div>
-
       <div className="relative flex flex-col items-center min-h-[70vh]">
         <h1 className="text-[3rem] sm:text-[4rem] font-bold bg-gradient-to-r from-purple-400 to-purple-600 dark:from-purple-600 dark:to-purple-800 bg-clip-text text-transparent mb-8">
           Try ChatPilot
         </h1>
         <div className="flex justify-center items-center mb-8 gap-4">
+          <button
+            onClick={() => setChat(!chat)}
+            className="p-2 bg-white dark:text-white dark:bg-gray-800 rounded-full shadow-lg z-10"
+          >
+            toggle to chat
+          </button>
           <Link
             to="/"
             className="text-white dark:text-black hover:text-secondary transition-colors"
@@ -88,63 +96,68 @@ const Try = () => {
           <ToggleButton />
         </div>
 
-        <div className="flex flex-col w-full items-center  max-w-xl bg-white/80 dark:bg-gray-800/70 p-8 rounded-xl shadow-lg">
-          {!creatingApiProcess && (
-            <form onSubmit={handleSubmit} className="w-full">
-              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
-                Enter Website Details
-              </h2>
-              <div className="space-y-4 w-full">
-                <input
-                  type="text"
-                  placeholder="Website Name"
-                  value={websiteName}
-                  onChange={(e) => setWebsiteName(e.target.value)}
-                  className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 
-                    focus:outline-none focus:ring-2 focus:ring-purple-500 
-                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  required
-                />
-
-                <div>
+        {chat ? (
+          <div className="flex flex-col w-full items-center  max-w-xl bg-white/80 dark:bg-gray-800/70 p-8 rounded-xl shadow-lg">
+            {!creatingApiProcess && (
+              <form onSubmit={handleSubmit} className="w-full">
+                <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
+                  Enter Website Details
+                </h2>
+                <div className="space-y-4 w-full">
                   <input
-                    type="url"
-                    placeholder="Website URL"
-                    value={websiteUrl}
-                    onChange={(e) => setWebsiteUrl(e.target.value)}
+                    type="text"
+                    placeholder="Website Name"
+                    value={websiteName}
+                    onChange={(e) => setWebsiteName(e.target.value)}
                     className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 
                     focus:outline-none focus:ring-2 focus:ring-purple-500 
                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     required
                   />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-purple-700 
+
+                  <div>
+                    <input
+                      type="url"
+                      placeholder="Website URL"
+                      value={websiteUrl}
+                      onChange={(e) => setWebsiteUrl(e.target.value)}
+                      className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                    focus:outline-none focus:ring-2 focus:ring-purple-500 
+                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-purple-700 
                   hover:from-purple-700 hover:to-purple-800 text-white font-semibold rounded-lg 
                   transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg 
                   focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
-                >
-                  ChatPilot your website
-                </button>
+                  >
+                    ChatPilot your website
+                  </button>
+                </div>
+              </form>
+            )}
+            {creatingApiProcess && (
+              <div className="flex flex-col gap-4 items-center">
+                <VscLoading className="animate-spin h-10 w-10 text-purple-500" />
+                <h2>Api is getting created</h2>
               </div>
-            </form>
-          )}
-          {creatingApiProcess && (
-            <div className="flex flex-col gap-4">
-              <h2>Api is getting created</h2>
-            </div>
-          )}
-          <Link
-            to="/profile"
-            className="text-black flex gap-2 dark:text-white font-bold mt-4"
-          >
-            Access existing keys
-            <p className="text-purple-500 font-medium dark:text-white">
-              Your Proile
-            </p>
-          </Link>
-        </div>
+            )}
+          </div>
+        ) : (
+          <ChatArea />
+        )}
+        <Link
+          to="/profile"
+          className="text-black flex gap-2 dark:text-white font-bold mt-4"
+        >
+          Access existing keys
+          <p className="text-purple-500 font-medium dark:text-white">
+            Your Proile
+          </p>
+        </Link>
       </div>
     </div>
   );

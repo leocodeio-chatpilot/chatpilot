@@ -140,7 +140,7 @@ const Profile = () => {
                   to="/try"
                   className="text-white dark:text-black hover:text-black transition-colors w-full text-center bg-secondary py-4 px-6 rounded-lg hover:bg-secondary/80 hover:text-black"
                 >
-                  Create new API
+                  Create/Try an API key
                 </Link>
               </div>
             </div>

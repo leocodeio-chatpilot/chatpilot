@@ -25,6 +25,11 @@ export const saveApiSchema = z.object({
   websiteUrl: z.string(),
 });
 
+export const queryApiSchema = z.object({
+  queryText: z.string(),
+  apiKey: z.string(),
+});
+
 export const generateApiSchema = z.object({
   url: z.string(),
 });

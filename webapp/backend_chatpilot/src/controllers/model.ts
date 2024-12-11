@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import client from "../db/client";
-import { saveApiSchema } from "../types";
+import { saveApiSchema, queryApiSchema } from "../types";
 import axios from "axios";
 
 export const saveApikey = async (req: Request, res: Response) => {
@@ -100,5 +100,48 @@ export const getApiByUserId = async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     res.status(500).json({ message: "Server error occured!!", payload: {} });
+  }
+};
+
+export const queryModelApi = async (req: Request, res: Response) => {
+  const queryData = queryApiSchema.safeParse(req.body);
+  if (!queryData.success) {
+    res.status(400).json({
+      message: "you did not provide query_text or api_key correctly",
+      payload: {},
+    });
+    return;
+  }
+  const { queryText, apiKey } = queryData.data;
+  console.log("debug log 1 - model.ts", queryText, apiKey);
+  try {
+    const modelApi = await client.modelapi.findUnique({
+      where: { api_key: apiKey },
+    });
+    if (!modelApi) {
+      res.status(404).json({
+        message: "you did not provide correct api_key",
+        payload: {},
+      });
+      return;
+    }
+    // console.log(modelApi);
+    const chatpilotApi = process.env.BACKEND_PYTHON_MODEL_API;
+    const modelResponse = await axios.post(`${chatpilotApi}/query`, {
+      query_text: queryText,
+      api_key: apiKey,
+    });
+    console.log("debug log 2 - model.ts", modelResponse.data.results);
+    res.status(200).json({
+      message: "query successfull",
+      payload: {
+        response: modelResponse.data.results,
+      },
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      message: "Server error occured!!",
+      payload: {},
+    });
   }
 };

@@ -15,6 +15,7 @@ export const isAuthenticated = async (
   next: NextFunction
 ) => {
   const { Authorization } = req.cookies;
+  // console.log(Authorization);
   if (!Authorization) {
     res.status(401).json({
       message: "You are not signed in",
