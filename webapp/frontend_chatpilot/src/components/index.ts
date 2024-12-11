@@ -8,6 +8,8 @@ import Signup from "./Signup";
 import Try from "./Try";
 import Profile from "./Profile";
 import ChatArea from "./ChatArea";
+import LoadingScreen from "./utils/Loadingscreen";
+
 export {
   StarsCanvas,
   Navbar,
@@ -19,4 +21,5 @@ export {
   Try,
   Profile,
   ChatArea,
+  LoadingScreen,
 };

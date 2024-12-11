@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { ToggleButton } from "../context/ThemeToggle";
 import { apiRecord } from "../constants/formats";
 import fetchUserData from "../functions/fetchUser";
+import LoadingScreen from "./utils/Loadingscreen";
 
 const Profile = () => {
   const [email, setEmail] = useState("");
@@ -58,15 +59,11 @@ const Profile = () => {
     "N/A";
 
   if (loading) {
-    return (
-      <div className="h-screen w-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-secondary"></div>
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   return (
-    <div className="relative w-screen h-auto">
+    <div className="relative h-auto">
       <div className="h-screen w-screen flex flex-col items-center">
         <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}

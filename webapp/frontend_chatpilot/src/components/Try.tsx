@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { ToggleButton } from "../context/ThemeToggle";
-import axios from "axios";
 
 const Try = () => {
   const [websiteUrl, setWebsiteUrl] = useState("");
