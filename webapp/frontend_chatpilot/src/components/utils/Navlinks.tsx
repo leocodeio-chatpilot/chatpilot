@@ -3,6 +3,7 @@ import { userNotSignedInLinks } from "../../constants";
 import { navLinks } from "../../constants";
 import { Link, useNavigate } from "react-router-dom";
 import { signout } from "../../functions/signout";
+import toast from "react-hot-toast";
 
 const Navlinks = ({
   active,
@@ -19,6 +20,7 @@ const Navlinks = ({
     try {
       await signout();
       console.log("signed out");
+      toast.success("Signed out successfully");
       navigate("/");
     } catch (error: any) {
       console.log(error);
