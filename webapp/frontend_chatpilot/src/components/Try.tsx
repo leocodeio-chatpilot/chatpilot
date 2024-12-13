@@ -3,11 +3,6 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { ToggleButton } from "../context/ThemeToggle";
-import axios from "axios";
-import { getAuthTokenFromCookie } from "../functions/getAuthCookie";
-import { VscLoading } from "react-icons/vsc";
-import ChatArea from "./ChatArea";
-import toast from "react-hot-toast";
 
 const Try = () => {
   const [websiteUrl, setWebsiteUrl] = useState("");

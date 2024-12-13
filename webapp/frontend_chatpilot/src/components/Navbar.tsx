@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { styles } from "./styles";
+import { LoadingScreen } from "./index";
 import {
   lightLogo,
   darkLogo,
@@ -17,8 +18,16 @@ const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
   const [singedIn, setSingedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +51,14 @@ const Navbar = () => {
       setSingedIn(true);
     }
   }, []);
+
+  if (isLoading) {
+    return (
+      <nav className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20`}>
+        <LoadingScreen />
+      </nav>
+    );
+  }
 
   return (
     <nav

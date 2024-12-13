@@ -1,11 +1,20 @@
+// src/App.tsx
+import { Suspense, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Signin, Signup, Docs, Try, Profile, ChatArea, LoadingScreen } from "./components";
 import Entry from "./Entry";
 import NotFound from "./components/NotFound";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Signin, Signup, Docs, Try, Profile, ChatArea } from "./components";
 import "./App.css";
-import { Toaster } from "react-hot-toast";
+import { LoadingProvider, useLoading } from "./context/LoadingContext";
 
-const App = () => {
+const AppContent = () => {
+  const { markRendered } = useLoading();
+
+  useEffect(() => {
+    // Mark as rendered after initial mount
+    markRendered();
+  }, [markRendered]);
+
   return (
     <BrowserRouter>
       <Toaster position="top-right" />
@@ -20,6 +29,16 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
+  );
+};
+
+const App = () => {
+  return (
+    <LoadingProvider>
+      <Suspense fallback={<LoadingScreen />}>
+        <AppContent />
+      </Suspense>
+    </LoadingProvider>
   );
 };
 
