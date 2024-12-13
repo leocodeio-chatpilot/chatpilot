@@ -6,6 +6,7 @@ import Entry from "./Entry";
 import NotFound from "./components/NotFound";
 import "./App.css";
 import { LoadingProvider, useLoading } from "./context/LoadingContext";
+import { Toaster } from "react-hot-toast";
 
 const AppContent = () => {
   const { markRendered } = useLoading();
