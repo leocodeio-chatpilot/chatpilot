@@ -17,6 +17,7 @@ const Signup = () => {
 
   useEffect(() => {
     const isSignedIn = checkSignin();
+    toast.success("You are signed in!!!");
     if (isSignedIn) {
       navigate("/");
     }

@@ -7,7 +7,7 @@ import { slideIn } from "./utils/motion";
 import { FaHome } from "react-icons/fa";
 import { ToggleButton } from "../context/ThemeToggle";
 import { StarsCanvas } from "./canvas";
-import { Toaster ,toast} from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +17,7 @@ const Signin = () => {
   //check if user is already signed in using cookies
   useEffect(() => {
     const isSignedIn = checkSignin();
+    toast.success("You are signed in!!!");
     if (isSignedIn) {
       navigate("/");
     }
@@ -30,8 +31,8 @@ const Signin = () => {
       if (response.status === 200) {
         setEmail("");
         setPassword("");
-        navigate("/");
         toast.success("Signed in successfully");
+        navigate("/");
       }
     } catch (err: any) {
       console.log("Error during signin:", err);
@@ -40,9 +41,6 @@ const Signin = () => {
   };
 
   return (
-    
-    
-    
     <div className="relative w-screen h-screen">
       <Toaster />
       <div className="h-screen w-screen flex flex-col items-center">
@@ -100,7 +98,7 @@ const Signin = () => {
               </button>
               <ToggleButton />
               <Link to="/">
-              <FaHome size={30} className="text-white dark:text-black" />
+                <FaHome size={30} className="text-white dark:text-black" />
               </Link>
             </div>
           </form>

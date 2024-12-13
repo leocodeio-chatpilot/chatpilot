@@ -9,7 +9,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <Toaster position="top-right" />
-
       <Routes>
         <Route path="/" element={<Entry />} />
         <Route path="/signin" element={<Signin />} />
