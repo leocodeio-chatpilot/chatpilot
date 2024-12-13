@@ -1,30 +1,28 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { IoSendSharp } from "react-icons/io5";
-import { toast, Toaster } from "react-hot-toast";
-
+import { toast } from "react-hot-toast";
 import axios from "axios";
-// Add interface for chat message type
+
 interface ChatMessage {
   text: string;
   sender: "user" | "bot";
 }
 
 const ChatArea = () => {
-  // Update state with proper typing
   const [chatData, setChatData] = useState<ChatMessage[]>([]);
   const [chatInput, setChatInput] = useState("");
   const [apiKey, setApiKey] = useState("");
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!chatInput.trim()) return;
 
-    if (!apiKey) {
-      toast.success("api key not provided!!!");
-      setChatData((prev) => [
-        ...prev,
-        { text: "Please set your API key first", sender: "bot" },
-      ]);
+    if (apiKey === "") {
+      toast.error("API key not provided!");
+      return;
+    }
+
+    if (!chatInput.trim()) {
+      toast.error("Please enter a message!");
       return;
     }
 
@@ -47,31 +45,39 @@ const ChatArea = () => {
       );
 
       if (!response.status.toString().startsWith("2")) {
-        toast.success("Bot not found sucessfully!!!");
-        throw new Error(
-          response.statusText || `Server error: ${response.status}`
-        );
+        toast.error("Failed to retrieve bot response!");
+        throw new Error(response.statusText || `Server error: ${response.status}`);
+      }
+
+      if (response.status === 404) {
+        toast.error("Invalid API key!");
       }
 
       const data = response.data;
-      setChatData((prev) => [
-        ...prev,
-        { text: data.payload.response, sender: "bot" },
-      ]);
+      setChatData((prev) => [...prev, { text: data.payload.response, sender: "bot" }]);
     } catch (error) {
-      toast.error("An unexpected error occurred!!!");
-      const errorMessage =
-        error instanceof Error ? error.message : "An unexpected error occurred";
-      setChatData((prev) => [
-        ...prev,
-        { text: `Error: ${errorMessage}`, sender: "bot" },
-      ]);
+      toast.error("An unexpected error occurred!");
     }
   };
 
+  function useChatScroll<T>(dep: T): any {
+    const ref = React.useRef<HTMLDivElement>();
+    React.useEffect(() => {
+      if (ref.current) {
+        ref.current.scrollTop = ref.current.scrollHeight;
+      }
+    }, [dep]);
+    return ref;
+  }
+
+  const ref = useChatScroll(chatData);
+
   return (
-    <div className="w-full max-w-4xl mx-auto bg-white/90 rounded-xl shadow-lg overflow-hidden">
-      <div className="h-auto min-h-4xl overflow-y-auto p-4 space-y-4">
+    <div className="w-full max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+      <div
+        ref={ref}
+        className="h-[400px] overflow-y-scroll p-4 space-y-4 bg-gray-50"
+      >
         {chatData.length > 0 ? (
           chatData.map((message, index) => (
             <div
@@ -81,11 +87,11 @@ const ChatArea = () => {
               }`}
             >
               <span
-                className={`px-4 py-2 rounded-lg max-w-[70%] ${
+                className={`px-4 py-2 rounded-lg max-w-[70%] text-sm md:text-base ${
                   message.sender === "user"
                     ? "bg-purple-600 text-white"
-                    : "bg-gray-200 text-black"
-                }`}
+                    : "bg-gray-300 text-black"
+                } shadow-md`}
               >
                 {message.text}
               </span>
@@ -98,28 +104,28 @@ const ChatArea = () => {
       <input
         type="text"
         value={apiKey}
-        placeholder="enter you api key here ... "
+        placeholder="Enter your API key here..."
         onChange={(e) => setApiKey(e.target.value)}
-        className="p-2 w-full bg-purple-400 text-black placeholder-gray-600 border-none rounded focus:outline-none dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+        className="p-3 w-full bg-gray-100 border border-gray-300 rounded-t-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm placeholder-gray-400"
       />
       <form
         onSubmit={handleSendMessage}
-        className="h-14 w-full p-2 flex items-center border-t border-gray-300"
+        className="flex items-center border-t border-gray-300 bg-white p-2"
       >
         <input
           type="text"
           value={chatInput}
           onChange={(e) => setChatInput(e.target.value)}
           placeholder="Type your message..."
-          className="flex-grow p-2 rounded-lg border border-gray-300 focus:outline-none focus:border-purple-500"
+          className="flex-grow p-3 rounded-l-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm placeholder-gray-400"
         />
         <button
           type="submit"
-          className="ml-2 px-3 py-2 rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition-colors"
+          className="flex items-center justify-center px-4 py-2 bg-purple-600 text-white rounded-r-md hover:bg-purple-700 transition-colors"
         >
           <IoSendSharp
             size={20}
-            className="hover:scale-110 transition-all duration-300"
+            className="hover:scale-110 transition-transform duration-200"
           />
         </button>
       </form>

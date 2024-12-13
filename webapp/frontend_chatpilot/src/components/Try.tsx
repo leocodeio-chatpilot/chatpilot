@@ -7,12 +7,13 @@ import axios from "axios";
 import { getAuthTokenFromCookie } from "../functions/getAuthCookie";
 import { VscLoading } from "react-icons/vsc";
 import ChatArea from "./ChatArea";
+import toast from "react-hot-toast";
 
 const Try = () => {
   const [websiteUrl, setWebsiteUrl] = useState("");
   const [websiteName, setWebsiteName] = useState("");
   const [creatingApiProcess, setCreatingApiProcess] = useState(false);
-  const [chat, setChat] = useState(false);
+  const [chat, setChat] = useState(true);
   const navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,16 +38,18 @@ const Try = () => {
       );
       console.log(createApiResponse);
       setCreatingApiProcess(false);
-      alert("api created sucess fully, select the website from your profile");
+      toast.success("api created sucess");
+      // alert("api created sucessfully, select the website from your profile");
       navigate("/profile");
     } catch (err: any) {
+      toast.error("error while creating api");
       console.error("something went wrong");
       throw err;
     }
   };
 
   return (
-    <div className="relative w-full h-screen mx-auto overflow-hidden bg-gradient-to-b from-[#13111C] via-[#1F1B3C] to-[#13111C] dark:from-white dark:via-purple-10 dark:to-white">
+    <div className="relative w-full h-screen mx-auto overflow-hidden bg-gradient-to-b from-[#13111C] via-[#1F1B3C] to-[#13111C] dark:from-white dark:via-purple-10 dark:to-gray-300">
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute w-full h-full animate-gradient-y">
           <div className="absolute inset-0 opacity-30 bg-gradient-to-t from-purple-600/20 via-transparent to-purple-600/20 dark:from-purple-300/30 dark:to-purple-300/30" />
@@ -83,9 +86,9 @@ const Try = () => {
         <div className="flex justify-center items-center mb-8 gap-4">
           <button
             onClick={() => setChat(!chat)}
-            className="p-2 bg-white dark:text-white dark:bg-gray-800 rounded-full shadow-lg z-10"
+            className="p-2 px-4 bg-white dark:text-white dark:bg-gray-800 rounded-full shadow-lg z-10"
           >
-            toggle to chat
+            {chat ? <p>Toggle to chat</p> : <p>Toggle to create api</p>}
           </button>
           <Link
             to="/"
@@ -151,10 +154,10 @@ const Try = () => {
         )}
         <Link
           to="/profile"
-          className="text-black flex gap-2 dark:text-white font-bold mt-4"
+          className="text-white flex gap-2 dark:text-black font-bold mt-4"
         >
           Access existing keys
-          <p className="text-purple-500 font-medium dark:text-white">
+          <p className="text-purple-500 font-medium dark:text-black">
             Your Proile
           </p>
         </Link>

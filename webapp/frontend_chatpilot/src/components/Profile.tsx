@@ -68,11 +68,10 @@ const Profile = () => {
   }
 
   return (
-    <div className="relative w-screen h-auto">
-      <div className="h-screen w-screen flex flex-col items-center">
+      <div className="relative h-screen w-screen flex flex-col items-center">
         <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
-          className="flex-[0.75] bg-transparent p-8 rounded-2xl w-full max-w-md mt-20"
+          className="flex-[0.75] bg-transparent p-8 rounded-2xl w-full max-w-md"
         >
           <h1 className="text-[30px] xs:text-[40px] sm:text-[50px] text-white dark:text-black font-black text-center mb-2">
             Pro<span className="text-secondary">file</span>
@@ -148,12 +147,8 @@ const Profile = () => {
             </div>
           </div>
         </motion.div>
-
-        <div className="flex-1 flex flex-col items-center justify-center h-screen">
-          <StarsCanvas />
-        </div>
+        <StarsCanvas />
       </div>
-    </div>
   );
 };
 

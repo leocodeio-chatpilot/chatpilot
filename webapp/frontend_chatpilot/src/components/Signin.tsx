@@ -42,7 +42,6 @@ const Signin = () => {
 
   return (
     <div className="relative w-screen h-screen">
-      <Toaster />
       <div className="h-screen w-screen flex flex-col items-center">
         <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
@@ -51,7 +50,7 @@ const Signin = () => {
           <h1 className="text-[30px] xs:text-[40px] sm:text-[50px] text-white dark:text-black font-black text-center mb-8">
             Sign<span className="text-secondary">in</span>
           </h1>
-          <Link
+          <Link 
             to="/signup"
             className="text-secondary hover:text-purple-700 transition-colors mt-6 block text-center text-white dark:text-black hover:text-gray-500 dark:hover:text-gray-600"
           >
