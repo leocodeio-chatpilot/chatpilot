@@ -5,9 +5,9 @@ import App from "./App.tsx";
 import ThemeToggleProvider from "./context/ThemeToggle.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-      <ThemeToggleProvider>
-        <App />
-      </ThemeToggleProvider>
-  </StrictMode>
+  // <StrictMode>
+  <ThemeToggleProvider>
+    <App />
+  </ThemeToggleProvider>
+  // </StrictMode>
 );

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { ToggleButton } from "../context/ThemeToggle";
 import { apiRecord } from "../constants/formats";
 import fetchUserData from "../functions/fetchUser";
-import { toast , Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 const Profile = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -21,6 +21,7 @@ const Profile = () => {
   useEffect(() => {
     const isSignedIn = checkSignin();
     if (!isSignedIn) {
+      toast.success("You have to signed in first!!!");
       navigate("/signin");
       return;
     }
@@ -61,19 +62,16 @@ const Profile = () => {
   if (loading) {
     return (
       <div className="h-screen w-screen flex items-center justify-center">
-        <Toaster position="top-right" />
         <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-secondary"></div>
       </div>
     );
   }
 
   return (
-    <div className="relative w-screen h-auto">
-      <Toaster />
-      <div className="h-screen w-screen flex flex-col items-center">
+      <div className="relative h-screen w-screen flex flex-col items-center">
         <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
-          className="flex-[0.75] bg-transparent p-8 rounded-2xl w-full max-w-md mt-20"
+          className="flex-[0.75] bg-transparent p-8 rounded-2xl w-full max-w-md"
         >
           <h1 className="text-[30px] xs:text-[40px] sm:text-[50px] text-white dark:text-black font-black text-center mb-2">
             Pro<span className="text-secondary">file</span>
@@ -149,12 +147,8 @@ const Profile = () => {
             </div>
           </div>
         </motion.div>
-
-        <div className="flex-1 flex flex-col items-center justify-center h-screen">
-          <StarsCanvas />
-        </div>
+        <StarsCanvas />
       </div>
-    </div>
   );
 };
 
