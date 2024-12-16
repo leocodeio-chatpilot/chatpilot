@@ -7,7 +7,7 @@ import { slideIn } from "./utils/motion";
 import { FaHome } from "react-icons/fa";
 import { ToggleButton } from "../context/ThemeToggle";
 import { StarsCanvas } from "./canvas";
-import { Toaster , toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -17,8 +17,8 @@ const Signup = () => {
 
   useEffect(() => {
     const isSignedIn = checkSignin();
-    toast.success("You are signed in!!!");
     if (isSignedIn) {
+      toast.success("You are already signed in!!!");
       navigate("/");
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,7 +43,6 @@ const Signup = () => {
 
   return (
     <div className="relative w-screen h-screen">
-      <Toaster />
       <div className="h-screen w-screen flex flex-col items-center">
         <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}

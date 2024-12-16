@@ -9,7 +9,9 @@ import { Link } from "react-router-dom";
 import { ToggleButton } from "../context/ThemeToggle";
 import { apiRecord } from "../constants/formats";
 import fetchUserData from "../functions/fetchUser";
+import { LoadingScreen } from "./utils/Loadingscreen";
 import { toast } from "react-hot-toast";
+
 const Profile = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -19,9 +21,10 @@ const Profile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoading(true);
     const isSignedIn = checkSignin();
     if (!isSignedIn) {
-      toast.success("You have to signed in first!!!");
+      toast.error("You are not signed in!!!");
       navigate("/signin");
       return;
     }
@@ -29,7 +32,7 @@ const Profile = () => {
     const loadUserData = async () => {
       try {
         const userData = await fetchUserData();
-        // console.log("debug log 1 at profile.tsx:", userData);
+        console.log(userData);
         if (userData.username) {
           setUsername(userData.username);
           setEmail(userData.email);
@@ -39,16 +42,17 @@ const Profile = () => {
           }
         }
       } catch (error) {
-        toast.error("Error loading user data. Please try again later");
+        toast.error("Error loading user data!!!");
         console.error("Error loading user data:", error);
         navigate("/signin");
-      } finally {
-        setLoading(false);
       }
     };
 
     loadUserData();
-    // console.log("debug log 2: apikyes at profile", apiKeys);
+    console.log(apiKeys);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, []);
 
   const handleWebsiteChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -61,17 +65,18 @@ const Profile = () => {
 
   if (loading) {
     return (
-      <div className="h-screen w-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-secondary"></div>
+      <div className="z-10 h-screen w-screen flex items-center justify-center bg-black dark:bg-black">
+        <LoadingScreen />
       </div>
     );
   }
 
   return (
-      <div className="relative h-screen w-screen flex flex-col items-center">
+    <div className="relative h-auto">
+      <div className="h-screen w-screen flex flex-col items-center">
         <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
-          className="flex-[0.75] bg-transparent p-8 rounded-2xl w-full max-w-md"
+          className="flex-[0.75] bg-transparent p-8 rounded-2xl w-full max-w-md mt-20"
         >
           <h1 className="text-[30px] xs:text-[40px] sm:text-[50px] text-white dark:text-black font-black text-center mb-2">
             Pro<span className="text-secondary">file</span>
@@ -141,14 +146,18 @@ const Profile = () => {
                   to="/try"
                   className="text-white dark:text-black hover:text-black transition-colors w-full text-center bg-secondary py-4 px-6 rounded-lg hover:bg-secondary/80 hover:text-black"
                 >
-                  Create/Try an API key
+                  Create new API
                 </Link>
               </div>
             </div>
           </div>
         </motion.div>
-        <StarsCanvas />
+
+        <div className="flex-1 flex flex-col items-center justify-center h-screen">
+          <StarsCanvas />
+        </div>
       </div>
+    </div>
   );
 };
 

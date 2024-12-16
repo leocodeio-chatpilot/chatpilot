@@ -12,6 +12,7 @@ import {
 import { ToggleButton } from "../context/ThemeToggle";
 import { checkSignin } from "../functions/checkSignin";
 import Navlinks from "./utils/Navlinks";
+import { LoadingScreen } from "./utils/Loadingscreen";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -19,6 +20,16 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const [singedIn, setSingedIn] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +53,16 @@ const Navbar = () => {
       setSingedIn(true);
     }
   }, []);
+
+  if (isLoading) {
+    return (
+      <nav
+        className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20`}
+      >
+        <LoadingScreen />
+      </nav>
+    );
+  }
 
   return (
     <nav
@@ -110,7 +131,7 @@ const Navbar = () => {
           >
             <ul className=" rounded px-2 py-4 list-none flex justify-end items-start flex-1 flex-col gap-4 bg-black dark:bg-slate-100">
               <Navlinks
-                active={active}   
+                active={active}
                 setActive={setActive}
                 singedIn={singedIn}
               />
