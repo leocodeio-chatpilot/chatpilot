@@ -7,7 +7,7 @@ import { slideIn } from "./utils/motion";
 import { FaHome } from "react-icons/fa";
 import { ToggleButton } from "../context/ThemeToggle";
 import { StarsCanvas } from "./canvas";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,8 +17,8 @@ const Signin = () => {
   //check if user is already signed in using cookies
   useEffect(() => {
     const isSignedIn = checkSignin();
-    toast.success("You are signed in!!!");
     if (isSignedIn) {
+      toast.success("You are already signed in!!!");
       navigate("/");
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
