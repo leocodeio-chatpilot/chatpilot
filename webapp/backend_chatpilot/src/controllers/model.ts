@@ -104,6 +104,7 @@ export const getApiByUserId = async (req: Request, res: Response) => {
 };
 
 export const queryModelApi = async (req: Request, res: Response) => {
+  console.log("debug log 0 - model.ts", req.body);
   const queryData = queryApiSchema.safeParse(req.body);
   if (!queryData.success) {
     res.status(400).json({
